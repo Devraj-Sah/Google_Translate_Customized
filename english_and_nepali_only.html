@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>How To Add Google Translate Button On Your Webpage ?</title>
+  </head>
+
+  <body>
+    <p class="notranslate">Hello everyone!</p>
+    <p>Welcome to GeeksforGeeks</p>
+
+    <p class="notranslate">Translate this page in your preferred language:</p>
+
+    <!-- Start Google Translator START-->
+    <style>
+      #google_translate_element span { display: none; } .skiptranslate { font-size: 0 !important; } .skiptranslate div { font-size: 16px; } .goog-te-combo { padding: 6px; } .VIpgJd-ZVi9od-ORHb-OEVmcd { display: none !important; } body { top: 0 !important; }
+    </style>
+    <div id="google_translate_element"></div>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+			pageLanguage: "en", 
+			includedLanguages: 'en,ne',
+			layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL 
+			},
+          "google_translate_element"
+        );
+      }
+      setTimeout(() => {
+        const dropdown = document.querySelector(".goog-te-combo");
+        const text = document.querySelector(".notranslate");
+        const optionText = {
+          "": "Select language",
+          'en': "English",
+          'ne': "Nepali",         
+        };
+		const change_custom_text = {
+			'Hello everyone!':"सबैलाई नमस्कारd!",
+			'Translate this page in your preferred language:':"आफ्नो मनपर्ने भाषामा यो पृष्ठ अनुवाद गर्नुहोस्:",
+		}
+        change_here();		
+        dropdown.addEventListener("change", function () {
+          change_here(dropdown.value);
+        });
+        function change_here(lan = null) {
+          setTimeout(() => { const options = dropdown.querySelectorAll("option"); const custom_text = document.querySelectorAll(".notranslate"); options.forEach((option) => { option.textContent = optionText[option.value] || option.value; if(lan === 'ne'){ custom_text.forEach((text) => { text.textContent = change_custom_text[text.textContent] || text.textContent; }); } }); }, 
+		  				1000);
+        }
+      }, 1000);
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" ></script>
+
+    <!-- Start Google Translator END -->
+
+    <p>
+      You can translate the content of this page by selecting a language in the
+      select box.
+    </p>
+  </body>
+</html>
